@@ -44,9 +44,9 @@ jobs:
         run: npm run test:ui
       - name: Display SoftUni Username
         run: echo "SoftUni Username - jvalkov"
-  mocha-test:
+  mocha-tests:
     runs-on: ubuntu-latest
-    needs: npm_security_tests
+    needs: ui_tests
     steps:
       - name: Checkout of the repo
         uses: actions/checkout@v4
@@ -63,3 +63,13 @@ jobs:
         run: npm run test:unit 
       - name: Display SoftUni Username
         run: echo "SoftUni Username - jvalkov"
+  deploy_to_render:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: mocha-tests
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MY_RENDER_SITE_ID }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY }}
