@@ -63,7 +63,7 @@ jobs:
         run: npm run test:unit 
       - name: Display SoftUni Username
         run: echo "SoftUni Username - jvalkov"
-  deploy_frondend-render:
+  deploy_to_render:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     needs: mocha-tests
