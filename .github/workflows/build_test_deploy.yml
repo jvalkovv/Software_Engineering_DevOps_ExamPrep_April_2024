@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: 20.x
           cache: npm
+      - name: Install Dependencies
+        run: npm install
       - name: Start the localhost
         run: npm run start
   npm_security_tests:
