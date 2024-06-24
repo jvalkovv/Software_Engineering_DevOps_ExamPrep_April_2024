@@ -44,4 +44,18 @@ jobs:
         run: npm run test:ui
       - name: Display SoftUni Username
         run: echo "SoftUni Username - jvalkov"
-
+  mocha-test:
+    runs-on: ubuntu-latest
+    needs: npm_security_tests
+    steps:
+      - name: Checkout of the repo
+        uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+      - name: Install Dependencies
+        run: npm install mocha
+      - name: Run Mocha tests
+        run: npm run test:unit 
