@@ -76,6 +76,8 @@ jobs:
           cache: npm
       - name: Chech SoftUni username
         run: echo "SoftUni Username - jvalkov"
+      - name: Current login user
+        run: echo "Current login user:/ $(whoami)"
   deploy_to_render:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
